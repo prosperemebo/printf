@@ -8,15 +8,15 @@
  */
 int print_str(char *c)
 {
-        int count = 0;
+	int count = 0;
 
-        while (c && *c)
-        {
-                putchar(*c++);
-                count++;
-        }
+	while (c && *c)
+	{
+		putchar(*c++);
+		count++;
+	}
 
-        return (count);
+	return (count);
 }
 
 /**
@@ -27,29 +27,29 @@ int print_str(char *c)
  */
 int print_address(va_list args)
 {
-        unsigned long int p = (unsigned long int)va_arg(args, void *);
-        char *str = "0x";
-        int i, j, count = 0;
+	unsigned long int p = (unsigned long int)va_arg(args, void *);
+	char *str = "0x";
+	int i, j, count = 0;
 
-        count += print_str(str);
+	count += print_str(str);
 
-        if (p == 0)
-        {
-                count += putchar('0');
-                return (count);
-        }
+	if (p == 0)
+	{
+		count += putchar('0');
+		return (count);
+	}
 
-        for (i = 0; p >> (i * 4 + 4); i++)
-                ;
+	for (i = 0; p >> (i * 4 + 4); i++)
+		;
 
-        for (; i >= 0; i--)
-        {
-                j = (p >> (i * 4)) & 0xf;
-                if (j < 10)
-                        count += putchar('0' + j);
-                else
-                        count += putchar('a' + j - 10);
-        }
+	for (; i >= 0; i--)
+	{
+		j = (p >> (i * 4)) & 0xf;
+		if (j < 10)
+			count += putchar('0' + j);
+		else
+			count += putchar('a' + j - 10);
+	}
 
-        return (count);
+	return (count);
 }
