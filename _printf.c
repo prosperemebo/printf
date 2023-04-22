@@ -20,7 +20,6 @@ int _printf(const char *format, ...)
 		{
 			format++;
 
-			// Handling %c directive
 			if (*format == 'c')
 			{
 				char c = (char) va_arg(args, int);
@@ -28,7 +27,6 @@ int _printf(const char *format, ...)
 				count++;
 			}
 
-			// Handling %s directive
 			else if (*format == 's') 
 			{
 				char *s = va_arg(args, char *);
@@ -42,14 +40,12 @@ int _printf(const char *format, ...)
 				
 			}
 
-			// Handling %
 			else if (*format == '%')
 			{
 				putchar('%');
 				count++;
 			}
 
-			// Handling %d directive
 			else if (*format == 'd')
 			{
 				int num = va_arg(args, int);
