@@ -2,7 +2,7 @@
 
 /**
  * print_str - Prints a string to stdout
- * @str: The string to print
+ * @c: The string to print
  *
  * Return: The number of characters printed
  */
