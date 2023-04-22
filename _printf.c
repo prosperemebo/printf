@@ -46,7 +46,7 @@ int _printf(const char *format, ...)
 				count++;
 			}
 
-			else if (*format == 'd')
+			else if (*format == 'd' || *format == 'i')
 			{
 				int num = va_arg(args, int);
 				int digitCount = 0;
