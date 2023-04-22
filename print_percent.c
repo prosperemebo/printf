@@ -3,6 +3,7 @@
 /**
  * print_percent - Print percent function to print percent
  *
+ * @format: input character
  * Return: (1)
  */
 int print_percent(char format)

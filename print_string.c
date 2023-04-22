@@ -8,15 +8,15 @@
  */
 int print_string(va_list args)
 {
-        char *s = va_arg(args, char *);
-        int count = 0;
+	char *s = va_arg(args, char *);
+	int count = 0;
 
-        while (*s != '\0')
-        {
-                putchar(*s);
-                s++;
-                count++;
-        }
+	while (*s != '\0')
+	{
+		putchar(*s);
+		s++;
+		count++;
+	}
 
-        return (count);
+	return (count);
 }

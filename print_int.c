@@ -13,6 +13,7 @@ int print_int(va_list args)
 	int count = 0;
 	int temp, i, j;
 	char *digits;
+
 	if (num < 0)
 	{
 		putchar('-');
