@@ -13,34 +13,28 @@ int print_int(va_list args)
         int count = 0;
         int temp, i, j;
         char *digits;
-
         if (num < 0)
         {
                 putchar('-');
                 count++;
                 num = -num;
         }
-
         temp = num;
         while (temp != 0)
         {
                 digitCount++;
                 temp /= 10;
         }
-
         digits = (char *)malloc(sizeof(char) * (digitCount + 1));
-
         for (i = 0; i <= digitCount; i++)
         {
                 digits[i] = (char)(num % 10 + '0');
                 num /= 10;
         }
-
         for (j = digitCount - 1; j >= 0; j--)
         {
                 putchar(digits[j]);
                 count++;
         }
-
         return (count);
 }

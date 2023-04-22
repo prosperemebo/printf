@@ -10,8 +10,7 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
-	int i;
+	int i, count = 0;
 	print_func_t methods[] = {
 	    {'c', print_char},
 	    {'s', print_string},
