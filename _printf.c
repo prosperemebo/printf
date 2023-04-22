@@ -21,6 +21,7 @@ int _printf(const char *format, ...)
 	    {'o', print_octal},
 	    {'x', print_hex_lower},
 	    {'X', print_hex_upper},
+	    {'p', print_address},
 	    {'\0', NULL}};
 	va_start(args, format);
 	while (*format != '\0')
