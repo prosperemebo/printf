@@ -5,6 +5,8 @@
 #include <stdarg.h>
 #include <stdlib.h>
 
+int _printf(const char *format, ...);
+
 /**
  * struct print_func - Struct for function pointer to print function
  *
@@ -16,7 +18,5 @@ typedef struct print_func
         char type;
         int (*execute)(va_list);
 } print_func_t;
-
-int _printf(const char *format, ...);
 
 #endif
