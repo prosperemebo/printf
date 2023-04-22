@@ -28,10 +28,8 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-
 			if (*format == '%')
 				count += print_percent();
-
 			for (i = 0; methods[i].type != '\0'; i++)
 			{
 				if (methods[i].type == *format)
