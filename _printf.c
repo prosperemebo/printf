@@ -1,18 +1,6 @@
 #include "main.h"
 
 /**
- * struct print_func - Struct for function pointer to print function
- *
- * @type: Format Specifier
- * @execute: Method to handle format specifier
- */
-typedef struct print_func
-{
-	char type;
-	int (*execute)(va_list);
-} print_func_t;
-
-/**
  * print_char - Print Char function to print character
  *
  * @args: va_list containing characters to print
@@ -52,7 +40,7 @@ int print_string(va_list args)
  *
  * Return: (1)
  */
-int print_percent()
+int print_percent(void)
 {
 
 	putchar('%');
@@ -61,7 +49,7 @@ int print_percent()
 }
 
 /**
- * print_string - Print int function to print integer or unsigned int
+ * print_int - Print int function to print integer or unsigned int
  *
  * @args: va_list containing string to print
  * Return: Number of printed characters in int
