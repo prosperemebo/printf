@@ -22,22 +22,21 @@ int _printf(const char *format, ...)
 
 			if (*format == 'c')
 			{
-				char c = (char) va_arg(args, int);
+				char c = (char)va_arg(args, int);
 				putchar(c);
 				count++;
 			}
 
-			else if (*format == 's') 
+			else if (*format == 's')
 			{
 				char *s = va_arg(args, char *);
-				
+
 				while (*s != '\0')
 				{
 					putchar(*s);
 					s++;
 					count++;
 				}
-				
 			}
 
 			else if (*format == '%')
@@ -71,8 +70,8 @@ int _printf(const char *format, ...)
 
 				for (i = 0; i <= digitCount; i++)
 				{
-					digits[i] = (char) (num % 10 + '0');
-					num /= 10; 
+					digits[i] = (char)(num % 10 + '0');
+					num /= 10;
 				}
 
 				for (j = digitCount - 1; j >= 0; j--)
