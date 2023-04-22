@@ -5,9 +5,9 @@
  *
  * Return: (1)
  */
-int print_percent(void)
+int print_percent(char format)
 {
-        putchar('%');
+        putchar(format);
 
         return (1);
 }
