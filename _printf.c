@@ -43,7 +43,6 @@ int print_string(va_list args)
  */
 int print_percent(void)
 {
-
 	putchar('%');
 
 	return (1);
@@ -109,7 +108,6 @@ int _printf(const char *format, ...)
 	print_func_t methods[] = {
 	    {'c', print_char},
 	    {'s', print_string},
-	    {'%', print_percent},
 	    {'d', print_int},
 	    {'i', print_int},
 	    {'\0', NULL}};
@@ -119,6 +117,9 @@ int _printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
+
+			if (*format == '%')
+				count += print_percent();
 
 			for (i = 0; methods[i].type != '\0'; i++)
 			{
