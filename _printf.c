@@ -48,6 +48,43 @@ int _printf(const char *format, ...)
 				putchar('%');
 				count++;
 			}
+
+			// Handling %d directive
+			else if (*format == 'd')
+			{
+				int num = va_arg(args, int);
+				int digitCount = 0;
+				int temp, i, j;
+				char *digits;
+
+				if (num < 0)
+				{
+					putchar('-');
+					count++;
+					num = -num;
+				}
+
+				temp = num;
+				while (temp != 0)
+				{
+					digitCount++;
+					temp /= 10;
+				}
+
+				digits = (char *)malloc(sizeof(char) * (digitCount + 1));
+
+				for (i = 0; i <= digitCount; i++)
+				{
+					digits[i] = (char) (num % 10 + '0');
+					num /= 10; 
+				}
+
+				for (j = digitCount - 1; j >= 0; j--)
+				{
+					putchar(digits[j]);
+					count++;
+				}
+			}
 		}
 		else
 		{
