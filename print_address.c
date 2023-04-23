@@ -12,7 +12,7 @@ int print_str(char *c)
 
 	while (c && *c)
 	{
-		putchar(*c++);
+		_putchar(*c++);
 		count++;
 	}
 
@@ -35,7 +35,7 @@ int print_address(va_list args)
 
 	if (p == 0)
 	{
-		count += putchar('0');
+		count += _putchar('0');
 		return (count);
 	}
 
@@ -46,9 +46,9 @@ int print_address(va_list args)
 	{
 		j = (p >> (i * 4)) & 0xf;
 		if (j < 10)
-			count += putchar('0' + j);
+			count += _putchar('0' + j);
 		else
-			count += putchar('a' + j - 10);
+			count += _putchar('a' + j - 10);
 	}
 
 	return (count);

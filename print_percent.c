@@ -8,7 +8,7 @@
  */
 int print_percent(char format)
 {
-	putchar(format);
+	_putchar(format);
 
 	return (1);
 }

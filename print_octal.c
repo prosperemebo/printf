@@ -31,7 +31,7 @@ int print_octal(va_list args)
 
 	for (j = digitCount - 1; j >= 0; j--)
 	{
-		putchar(digits[j]);
+		_putchar(digits[j]);
 		count++;
 	}
 

@@ -13,7 +13,7 @@ int print_string(va_list args)
 
 	while (*s != '\0')
 	{
-		putchar(*s);
+		_putchar(*s);
 		s++;
 		count++;
 	}

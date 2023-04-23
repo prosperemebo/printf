@@ -33,7 +33,7 @@ int print_hex(va_list args, int uppercase)
 	{
 		for (j = digitCount - 1; j >= 0; j--)
 		{
-			putchar(toupper(digits[j]));
+			_putchar(toupper(digits[j]));
 			count++;
 		}
 	}
@@ -41,7 +41,7 @@ int print_hex(va_list args, int uppercase)
 	{
 		for (j = digitCount - 1; j >= 0; j--)
 		{
-			putchar(digits[j]);
+			_putchar(digits[j]);
 			count++;
 		}
 	}

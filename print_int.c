@@ -16,7 +16,7 @@ int print_int(va_list args)
 
 	if (num < 0)
 	{
-		putchar('-');
+		_putchar('-');
 		count++;
 		num = -num;
 	}
@@ -34,7 +34,7 @@ int print_int(va_list args)
 	}
 	for (j = digitCount - 1; j >= 0; j--)
 	{
-		putchar(digits[j]);
+		_putchar(digits[j]);
 		count++;
 	}
 	return (count);
