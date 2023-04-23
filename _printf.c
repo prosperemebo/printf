@@ -29,9 +29,9 @@ int _printf(const char *format, ...)
 		if (*p == '%')
 		{
 			p++;
-			if (*p == '%')
+			if (*p == '%' || *p == 'r')
 			{
-				count += _putchar('%');
+				count += _putchar(*p);
 				continue;
 			}
 			while (get_flag(*p, &flags))
