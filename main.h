@@ -26,8 +26,8 @@ int print_address(va_list args);
  */
 typedef struct print_func
 {
-        char type;
-        int (*execute)(va_list);
+	char type;
+	int (*execute)(va_list);
 } print_func_t;
 
 #endif
