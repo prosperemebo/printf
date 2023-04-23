@@ -16,7 +16,7 @@ int print_hex(va_list args, int flag)
 	if (n == 0)
 	{
 		count += _putchar('0');
-		return count;
+		return (count);
 	}
 
 	for (i = 0; n > 0; i++)
