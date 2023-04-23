@@ -1,16 +1,15 @@
 #include "main.h"
 
 /**
- * print_char - Print Char function to print character
- *
- * @args: va_list containing characters to print
- * Return: Number of printed characters;
+ * print_char - prints a character
+ * @l: va_list arguments from _printf
+ * @f: pointer to the struct flags that determines
+ * if a flag is passed to _printf
+ * Return: number of char printed
  */
-int print_char(va_list args)
+int print_char(va_list l, flags_t *f)
 {
-	char c = va_arg(args, int);
-
-	_putchar(c);
-
+	(void)f;
+	_putchar(va_arg(l, int));
 	return (1);
 }

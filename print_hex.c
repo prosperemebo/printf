@@ -1,64 +1,45 @@
 #include "main.h"
 
 /**
- * print_hex - Print unsigned int function to print integer or unsigned int
- *
- * @args: va_list containing string to print
- * @flag: int
- * Return: Number of printed characters in int
+ * print_hex - prints a number in hexadecimal base,
+ * in lowercase
+ * @l: va_list arguments from _printf
+ * @f: pointer to the struct flags that determines
+ * if a flag is passed to _printf
+ * Description: the function calls convert() which in turns converts the input
+ * number into the correct base and returns it as a string
+ * Return: the number of char printed
  */
-int print_hex(va_list args, int flag)
+int print_hex(va_list l, flags_t *f)
 {
-	unsigned int n = va_arg(args, unsigned int);
-	char hex[100];
-	int i, count = 0;
+	unsigned int num = va_arg(l, unsigned int);
+	char *str = convert(num, 16, 1);
+	int count = 0;
 
-	if (n == 0)
-	{
-		count += _putchar('0');
-		return (count);
-	}
-
-	for (i = 0; n > 0; i++)
-	{
-		int remainder = n % 16;
-
-		if (remainder < 10)
-			hex[i] = remainder + '0';
-		else if (flag == 1)
-			hex[i] = remainder + 'a' - 10;
-		else
-			hex[i] = remainder + 'A' - 10;
-
-		n /= 16;
-	}
-
-	for (i--; i >= 0; i--)
-	{
-		count += _putchar(hex[i]);
-	}
-
+	if (f->hash == 1 && str[0] != '0')
+		count += _puts("0x");
+	count += _puts(str);
 	return (count);
 }
 
 /**
- * print_hex_lower - Prints number in hexadecimal in lowercase
- *
- * @args: List with numbers to be printed
- * Return: number of printed characters
+ * print_hex_big - prints a number in hexadecimal base,
+ * in uppercase
+ * @l: va_list arguments from _printf
+ * @f: pointer to the struct that determines
+ * if a flag is passed to _printf
+ * Description: the function calls convert() which in turns converts the input
+ * number into the correct base and returns it as a string
+ * Return: the number of char printed
  */
-int print_hex_lower(va_list args)
+int print_hex_big(va_list l, flags_t *f)
 {
-	return (print_hex(args, 1));
-}
+	unsigned int num = va_arg(l, unsigned int);
+	char *str = convert(num, 16, 0);
+	int count = 0;
 
-/**
- * print_hex_upper - Prints number in hexadecimal in uppercase
- *
- * @args: List with numbers to be printed
- * Return: number of printed characters
- */
-int print_hex_upper(va_list args)
-{
-	return (print_hex(args, 0));
+	if (f->hash == 1 && str[0] != '0')
+		count += _puts("0X");
+	count += _puts(str);
+	return (count);
 }

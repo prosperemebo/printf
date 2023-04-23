@@ -1,55 +1,25 @@
 #include "main.h"
 
 /**
- * print_str - Prints a string to stdout
- * @c: The string to print
- *
- * Return: The number of characters printed
+ * print_address - prints address of input in hexa format
+ * @l: va_list arguments from _printf
+ * @f: pointer to the struct flags that determines
+ * if a flag is passed to _printf
+ * Return: number of char printed
  */
-int print_str(char *c)
+int print_address(va_list l, flags_t *f)
 {
-	int count = 0;
+	char *str;
+	unsigned long int p = va_arg(l, unsigned long int);
 
-	while (c && *c)
-	{
-		_putchar(*c++);
-		count++;
-	}
+	register int count = 0;
 
-	return (count);
-}
+	(void)f;
 
-/**
- * print_address - Prints the memory address of a pointer argument
- *
- * @args: A va_list containing the pointer argument
- * Return: The number of characters printed
- */
-int print_address(va_list args)
-{
-	unsigned long int p = (unsigned long int)va_arg(args, void *);
-	char *str = "0x";
-	int i, j, count = 0;
-
-	count += print_str(str);
-
-	if (p == 0)
-	{
-		count += _putchar('0');
-		return (count);
-	}
-
-	for (i = 0; p >> (i * 4 + 4); i++)
-		;
-
-	for (; i >= 0; i--)
-	{
-		j = (p >> (i * 4)) & 0xf;
-		if (j < 10)
-			count += _putchar('0' + j);
-		else
-			count += _putchar('a' + j - 10);
-	}
-
+	if (!p)
+		return (_puts("(nil)"));
+	str = convert(p, 16, 1);
+	count += _puts("0x");
+	count += _puts(str);
 	return (count);
 }

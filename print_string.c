@@ -1,22 +1,20 @@
 #include "main.h"
 
 /**
- * print_string - Print String function to print string
- *
- * @args: va_list containing string to print
- * Return: Number of printed characters in string
+ * print_string - loops through a string and prints
+ * every character
+ * @l: va_list arguments from _printf
+ * @f: pointer to the struct flags that determines
+ * if a flag is passed to _printf
+ * Return: number of char printed
  */
-int print_string(va_list args)
+int print_string(va_list l, flags_t *f)
 {
-	char *s = va_arg(args, char *);
-	int count = 0;
+	char *s = va_arg(l, char *);
 
-	while (*s != '\0')
-	{
-		_putchar(*s);
-		s++;
-		count++;
-	}
+	(void)f;
 
-	return (count);
+	if (!s)
+		s = "(null)";
+	return (_puts(s));
 }

@@ -1,79 +1,50 @@
 #include "main.h"
+#include <limits.h>
+#include <stdio.h>
 
 /**
- * process_format - processes the format string and returns
- * the count of printed characters
- *
- * @format: A pointer to the format string
- * @args: A va_list containing the arguments to be printed
- * @methods: Array of print_func_t
- * Return: The count of printed characters
- */
-int process_format(const char *format, va_list args, print_func_t methods[])
-{
-	int i, count = 0;
-
-	while (*format != '\0')
-	{
-		if (*format == '%')
-		{
-			format++;
-			if (*format == '%')
-				count += print_percent(*format);
-			if (*format == 'r')
-			{
-				_putchar('%');
-				_putchar('r');
-				count++;
-			}
-			for (i = 0; methods[i].type != '\0'; i++)
-			{
-				if (methods[i].type == *format)
-				{
-					count += methods[i].execute(args);
-					break;
-				}
-			}
-		}
-		else
-		{
-			_putchar(*format);
-			count++;
-		}
-		format++;
-	}
-	return (count);
-}
-
-/**
- * _printf - prints a formatted string to stdout
- * @format: A pointer to the format string
- * Return: The count of printed characters
+ * _printf - produces output according to a format
+ * @format: format string containing the characters and the specifiers
+ * Description: this function will call the get_print() function that will
+ * determine which printing function to call depending on the conversion
+ * specifiers contained into fmt
+ * Return: length of the formatted output string
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
-	int count;
-	print_func_t methods[] = {
-	    {'c', print_char},
-	    {'s', print_string},
-	    {'d', print_int},
-	    {'i', print_int},
-	    {'u', print_unint},
-	    {'o', print_octal},
-	    {'x', print_hex_lower},
-	    {'X', print_hex_upper},
-	    {'p', print_address},
-	    {'\0', NULL}};
+	int (*pfunc)(va_list, flags_t *);
+	const char *p;
+	va_list arguments;
+	flags_t flags = {0, 0, 0};
 
-	if (!format)
+	register int count = 0;
+
+	va_start(arguments, format);
+	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
-
-	va_start(args, format);
-
-	count = process_format(format, args, methods);
-
-	va_end(args);
-
+	if (format[0] == '%' && format[1] == ' ' && !format[2])
+		return (-1);
+	for (p = format; *p; p++)
+	{
+		if (*p == '%')
+		{
+			p++;
+			if (*p == '%')
+			{
+				count += _putchar('%');
+				continue;
+			}
+			while (get_flag(*p, &flags))
+				p++;
+			pfunc = get_print(*p);
+			count += (pfunc)
+				     ? pfunc(arguments, &flags)
+				     : _printf("%%%c", *p);
+		}
+		else
+			count += _putchar(*p);
+	}
+	_putchar(-1);
+	va_end(arguments);
 	return (count);
 }
