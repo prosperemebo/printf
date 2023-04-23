@@ -4,6 +4,7 @@
  * print_hex - Print unsigned int function to print integer or unsigned int
  *
  * @args: va_list containing string to print
+ * @uppercase: int
  * Return: Number of printed characters in int
  */
 int print_hex(va_list args, int uppercase)
