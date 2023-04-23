@@ -6,6 +6,7 @@
  *
  * @format: A pointer to the format string
  * @args: A va_list containing the arguments to be printed
+ * @methods: Array of print_func_t
  * Return: The count of printed characters
  */
 int process_format(const char *format, va_list args, print_func_t methods[])
@@ -45,13 +46,10 @@ int process_format(const char *format, va_list args, print_func_t methods[])
 }
 
 /**
-
-_printf - prints a formatted string to stdout
-
-@format: A pointer to the format string
-
-Return: The count of printed characters
-*/
+ * _printf - prints a formatted string to stdout
+ * @format: A pointer to the format string
+ * Return: The count of printed characters
+ */
 int _printf(const char *format, ...)
 {
 	va_list args;
