@@ -4,47 +4,40 @@
  * print_hex - Print unsigned int function to print integer or unsigned int
  *
  * @args: va_list containing string to print
- * @uppercase: int
+ * @flag: int
  * Return: Number of printed characters in int
  */
-int print_hex(va_list args, int uppercase)
+int print_hex(va_list args, int flag)
 {
-	unsigned int num = va_arg(args, unsigned int);
-	char hex_digits[] = "0123456789abcdef";
-	int digitCount = 0;
-	int count = 0;
-	int temp, i, j;
-	char *digits;
+	unsigned int n = va_arg(args, unsigned int);
+	char hex[100];
+	int i, count = 0;
 
-	temp = num;
-	while (temp != 0)
+	if (n == 0)
 	{
-		digitCount++;
-		temp /= 16;
+		count += _putchar('0');
+		return count;
 	}
-	digits = (char *)malloc(sizeof(char) * (digitCount + 1));
-	for (i = 0; i <= digitCount; i++)
+
+	for (i = 0; n > 0; i++)
 	{
-		digits[i] = hex_digits[num % 16];
-		num /= 16;
+		int remainder = n % 16;
+
+		if (remainder < 10)
+			hex[i] = remainder + '0';
+		else if (flag == 1)
+			hex[i] = remainder + 'a' - 10;
+		else
+			hex[i] = remainder + 'A' - 10;
+
+		n /= 16;
 	}
-	digits[digitCount] = '\0';
-	if (uppercase)
+
+	for (i--; i >= 0; i--)
 	{
-		for (j = digitCount - 1; j >= 0; j--)
-		{
-			_putchar(toupper(digits[j]));
-			count++;
-		}
+		count += _putchar(hex[i]);
 	}
-	else
-	{
-		for (j = digitCount - 1; j >= 0; j--)
-		{
-			_putchar(digits[j]);
-			count++;
-		}
-	}
+
 	return (count);
 }
 
@@ -56,7 +49,7 @@ int print_hex(va_list args, int uppercase)
  */
 int print_hex_lower(va_list args)
 {
-	return (print_hex(args, 0));
+	return (print_hex(args, 1));
 }
 
 /**
@@ -67,5 +60,5 @@ int print_hex_lower(va_list args)
  */
 int print_hex_upper(va_list args)
 {
-	return (print_hex(args, 1));
+	return (print_hex(args, 0));
 }

@@ -1,15 +1,13 @@
 #include "main.h"
 
 /**
-
-process_format - processes the format string and returns the count of printed characters
-
-@format: A pointer to the format string
-
-@args: A va_list containing the arguments to be printed
-
-Return: The count of printed characters
-*/
+ * process_format - processes the format string and returns
+ * the count of printed characters
+ *
+ * @format: A pointer to the format string
+ * @args: A va_list containing the arguments to be printed
+ * Return: The count of printed characters
+ */
 int process_format(const char *format, va_list args)
 {
 	int i, count = 0;
