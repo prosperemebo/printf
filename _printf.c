@@ -28,8 +28,12 @@ int process_format(const char *format, va_list args)
 		if (*format == '%')
 		{
 			format++;
-			if (*format == '%' || *format == 'r')
+			if (*format == '%')
 				count += print_percent(*format);
+			if (*format == 'r')
+				_putchar('%');
+			_putchar('r');
+			count++;
 			for (i = 0; methods[i].type != '\0'; i++)
 			{
 				if (methods[i].type == *format)
@@ -46,7 +50,6 @@ int process_format(const char *format, va_list args)
 		}
 		format++;
 	}
-
 	return count;
 }
 
