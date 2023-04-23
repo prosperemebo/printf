@@ -8,20 +8,9 @@
  * @args: A va_list containing the arguments to be printed
  * Return: The count of printed characters
  */
-int process_format(const char *format, va_list args)
+int process_format(const char *format, va_list args, print_func_t methods[])
 {
 	int i, count = 0;
-	print_func_t methods[] = {
-	    {'c', print_char},
-	    {'s', print_string},
-	    {'d', print_int},
-	    {'i', print_int},
-	    {'u', print_unint},
-	    {'o', print_octal},
-	    {'x', print_hex_lower},
-	    {'X', print_hex_upper},
-	    {'p', print_address},
-	    {'\0', NULL}};
 
 	while (*format != '\0')
 	{
@@ -31,9 +20,11 @@ int process_format(const char *format, va_list args)
 			if (*format == '%')
 				count += print_percent(*format);
 			if (*format == 'r')
+			{
 				_putchar('%');
-			_putchar('r');
-			count++;
+				_putchar('r');
+				count++;
+			}
 			for (i = 0; methods[i].type != '\0'; i++)
 			{
 				if (methods[i].type == *format)
@@ -50,7 +41,7 @@ int process_format(const char *format, va_list args)
 		}
 		format++;
 	}
-	return count;
+	return (count);
 }
 
 /**
@@ -65,15 +56,26 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int count;
+	print_func_t methods[] = {
+	    {'c', print_char},
+	    {'s', print_string},
+	    {'d', print_int},
+	    {'i', print_int},
+	    {'u', print_unint},
+	    {'o', print_octal},
+	    {'x', print_hex_lower},
+	    {'X', print_hex_upper},
+	    {'p', print_address},
+	    {'\0', NULL}};
 
 	if (!format)
 		return (-1);
 
 	va_start(args, format);
 
-	count = process_format(format, args);
+	count = process_format(format, args, methods);
 
 	va_end(args);
 
-	return count;
+	return (count);
 }
