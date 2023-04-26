@@ -30,6 +30,14 @@ int main(void)
 	printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
 	_printf("Character:[%c]\n", 'H');
 	printf("Character:[%c]\n", 'H');
+	_printf("Character:[%c]\n", 'S');
+	printf("Character:[%c]\n", 'S');
+	_printf("A charv inside a sentence %c Did it work\n", 'F');
+	printf("A charv inside a sentence %c Did it work\n", 'F');
+	_printf("A charv inside a sentence %c Did it work\n", 48);
+	printf("A charv inside a sentence %c Did it work\n", 48);
+	_printf("Complete the sentence: You %s nothing. Jon snow.\n", (char *)0);
+	printf("Complete the sentence: You %s nothing. Jon snow.\n", (char *)0);
 	_printf("String:[%s]\n", "I am a string !");
 	printf("String:[%s]\n", "I am a string !");
 	_printf("Address:[%p]\n", addr);
